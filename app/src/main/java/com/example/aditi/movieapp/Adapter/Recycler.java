@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import com.example.aditi.movieapp.R;
 import com.squareup.picasso.Picasso;
 
-import java.security.AccessController;
 import java.util.List;
 
 /**
@@ -20,10 +19,10 @@ import java.util.List;
 
 public class Recycler extends  RecyclerView.Adapter<Recycler.MyViewHolder> {
 
-private List<Movie>mMovieList;
+private List<com.example.aditi.movieapp.Adapter.Movie>mMovieList;
 final private ListItemClickListener mOnClickListener;
 
-    public Recycler(List<Movie> movieList, ListItemClickListener onClickListener) {
+    public Recycler(List<com.example.aditi.movieapp.Adapter.Movie> movieList, ListItemClickListener onClickListener) {
         mMovieList = movieList;
         mOnClickListener = onClickListener;
     }
