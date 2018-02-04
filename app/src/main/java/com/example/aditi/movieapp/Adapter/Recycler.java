@@ -31,6 +31,8 @@ final private ListItemClickListener mOnClickListener;
 
     public interface ListItemClickListener {
         void onListItemClick(Movie movie);
+
+        void onListItemClick(com.example.aditi.movieapp.Adapter.Movie movie);
     }
 
 

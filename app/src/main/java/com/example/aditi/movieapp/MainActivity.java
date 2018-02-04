@@ -2,6 +2,7 @@ package com.example.aditi.movieapp;
 
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 
-
+import com.example.aditi.movieapp.Adapter.Movie;
+import com.example.aditi.movieapp.Adapter.Recycler;
 
 import java.net.URL;
 import java.util.List;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mrecyclerView;
 
-    private Re
+    private Recycler mRecyclerMovie;
 
    private ProgressBar mProgressBar;
 
@@ -87,7 +89,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Movie> movies) {
             mProgressBar.setVisibility(View.INVISIBLE);
-            mrecyclerView
+            mrecyclerView = new Recycler(MainActivity.this,movies,
+                        new Recycler.ListItemClickListener(){
+
+
+
+                            @Override
+                        public void onListItemClick(Movie movie) {
+                            Intent intent = new Intent(MainActivity.this,Details.class);
+                            intent.putExtra("data",movie);
+                            startActivity(intent);
+
+                        }
+                    });
+            mrecyclerView.setAdapter(mRecyclerMovie);
+            mRecyclerMovie.notifyDataSetChanged();
 
 
 
