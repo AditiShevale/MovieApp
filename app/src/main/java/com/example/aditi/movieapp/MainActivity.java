@@ -83,17 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
 
             mProgressBar.setVisibility(View.INVISIBLE);
-            mRecyclerMovie = new Recycler(MainActivity.this, movies,
-                    new Recycler.ListItemClickListener() {
-                        @Override
-                        public void onListItemClick(Movie movie) {
-                            Intent intent = new Intent(MainActivity.this,
-                                    Details.class);
-                            intent.putExtra("data", movie);
-                            startActivity(intent);
+           mRecyclerMovie = new Recycler(MainActivity.this,movies,
+                   new Recycler.ListItemClickListener(){
+                       @Override
+                       public void onListItemClick(Movie movie) {
+                           Intent intent = new Intent(MainActivity.this,
+                                   Details.class);
+                           intent.putExtra("data",movie);
 
-                        }
-                    });
+                       }
+                   });
             mrecyclerView.setAdapter(mRecyclerMovie);
             mRecyclerMovie.notifyDataSetChanged();
 

@@ -112,7 +112,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="10/10" />
+        tools:text="10/10"
+        android:layout_marginLeft="250dp" />
 
     <TextView
         android:id="@+id/release"
@@ -132,6 +133,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="25-03-1992" />
+        tools:text="AnotherText"
+        android:layout_marginLeft="228dp" />
 
 </android.support.constraint.ConstraintLayout>
