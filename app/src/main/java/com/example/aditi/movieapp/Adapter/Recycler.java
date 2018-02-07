@@ -45,8 +45,7 @@ final private ListItemClickListener mOnClickListener;
     public void onBindViewHolder(Recycler.MyViewHolder holder, int position) {
         com.example.aditi.movieapp.Adapter.Movie movie = mMovieList.get(position);
         Context context = holder.movieImg.getContext();
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w185/" +
-                "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg"+movie.getClass());
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w185/"+movie.getClass());
         holder.bind(mMovieList.get(position),mOnClickListener);
 
     }
@@ -60,7 +59,7 @@ final private ListItemClickListener mOnClickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public ImageView movieImg;
-        public Object bind;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
