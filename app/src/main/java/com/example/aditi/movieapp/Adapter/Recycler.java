@@ -2,6 +2,7 @@ package com.example.aditi.movieapp.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class Recycler extends  RecyclerView.Adapter<Recycler.MyViewHolder> {
 
-private List<com.example.aditi.movieapp.Adapter.Movie>mMovieList;
+private List<Movie>mMovieList;
 final private ListItemClickListener mOnClickListener;
 
     public Recycler(MainActivity mainActivity, List<Movie> movieList, ListItemClickListener onClickListener) {
@@ -45,7 +46,9 @@ final private ListItemClickListener mOnClickListener;
     public void onBindViewHolder(Recycler.MyViewHolder holder, int position) {
         com.example.aditi.movieapp.Adapter.Movie movie = mMovieList.get(position);
         Context context = holder.movieImg.getContext();
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w185/"+movie.getClass());
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w185/"+movie.
+                getImage()).into(holder.movieImg);
+        Log.i("xyz","https://image.tmdb.org/t/p/w185/"+movie.getImage());
         holder.bind(mMovieList.get(position),mOnClickListener);
 
     }
@@ -71,6 +74,7 @@ final private ListItemClickListener mOnClickListener;
                 @Override
                 public void onClick(View v) {
                     onClickListener.onListItemClick(movie);
+
                 }
             });
 

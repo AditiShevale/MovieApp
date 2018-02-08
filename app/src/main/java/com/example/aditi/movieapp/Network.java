@@ -3,8 +3,6 @@ package com.example.aditi.movieapp;
 
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
-
 import com.example.aditi.movieapp.Adapter.Movie;
 
 import org.json.JSONArray;
@@ -20,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static android.provider.MediaStore.Video.VideoColumns.LANGUAGE;
 
 /**
  * Created by aditi on 10/1/18.
@@ -31,7 +28,7 @@ public class Network {
 
     final  static  String API_KEY = "api_key";
 
-    final static String api_key = "Add Your API Key";
+    final static String api_key = "Enter Your API KEY";
 
     final static String LANGUAGE = "language";
     final static String language = "en-US";

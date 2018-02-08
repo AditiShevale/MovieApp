@@ -2,15 +2,19 @@ package com.example.aditi.movieapp;
 
 import android.app.Activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import com.example.aditi.movieapp.Adapter.Movie;
 import com.squareup.picasso.Picasso;
 
-public class Details extends Activity{
+import java.net.URL;
+
+public class Details extends AppCompatActivity{
     private TextView txt_Title;
     private TextView txt_Plot;
     private TextView txt_Rating;
@@ -24,12 +28,13 @@ public class Details extends Activity{
         txt_Plot = findViewById(R.id.plot);
         txt_Rating =findViewById(R.id.rating);
         txt_Release=findViewById(R.id.release);
-        img_Poster=findViewById(R.id.imageView);
+        img_Poster=findViewById(R.id.poster);
 
 
+        
 
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
       Movie movie =getIntent().getParcelableExtra("data");
@@ -38,8 +43,9 @@ public class Details extends Activity{
         txt_Plot.setText(movie.getOverview());
         txt_Rating.setText(movie.getVoteAverage() + "/10");
         txt_Release.setText(movie.getReleaseDate());
-        Picasso.with(img_Poster.getContext()).load("https://image.tmdb.org/t/p/w500"
-                + movie.getImage()).into(img_Poster);
+        Picasso.with(img_Poster.getContext()).load("https://image.tmdb." +
+                "org/t/p/w500" + movie.getImage()).into(img_Poster);
+
 
 
     }
