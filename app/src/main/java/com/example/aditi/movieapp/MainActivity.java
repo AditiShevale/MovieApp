@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         mrecyclerView.setLayoutManager(mLayoutManager);
         mrecyclerView.setItemAnimator(new DefaultItemAnimator());
-        build("popularityDec");
+        build("popularity.desc");
 
         if (savedInstanceState != null) {
             selected = savedInstanceState.getInt(MENUSelected);
