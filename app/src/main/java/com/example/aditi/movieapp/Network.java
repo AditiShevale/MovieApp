@@ -55,7 +55,7 @@ public class Network {
 
 
 }
-//Building URL used to query MOVIEDB
+            //Building URL used to query
 
     public static URL buildURl(String sort) {
         Uri builtUri = Uri.parse(MOVIE_DB_URL).buildUpon()
@@ -102,7 +102,7 @@ public class Network {
             return null;
         }
 
-        //creating empty array list to add the movies
+
         List<Movie> movie = new ArrayList<>();
 
 
