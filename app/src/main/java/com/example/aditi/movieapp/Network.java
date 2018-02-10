@@ -30,7 +30,7 @@ public class Network {
 
     final  static  String API_KEY = "api_key";
 
-    final static String api_key = "";
+    final static String api_key = "Paste Your API KEY HERE";
 
     final static String LANGUAGE = "language";
     final static String language = "en-US";
@@ -71,8 +71,7 @@ public class Network {
         URL url = null;
         try {
             url = new URL(builtUri.toString());
-            Log.i("anan",String.valueOf(url));
-        } catch (MalformedURLException e) {
+                  } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
