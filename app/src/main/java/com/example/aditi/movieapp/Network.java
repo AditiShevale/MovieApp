@@ -26,23 +26,13 @@ import java.util.Scanner;
  */
 
 public class Network {
-    final static String MOVIE_DB_URL = "https://api.themoviedb.org/3/discover/movie";
+    final static String MOVIE_DB_URL = "http://api.themoviedb.org/3/movie/";
 
-    final  static  String API_KEY = "api_key";
+    final static String API_KEY = "api_key";
 
-    final static String api_key = "Paste Your API KEY HERE";
+    final static String api_key = "****Paste your api key here******";
 
-    final static String LANGUAGE = "language";
-    final static String language = "en-US";
-    final static String SORT_BY = "sort_by";
-    final static String INCLUDE_ADULT = "include_adult";
-    final static String include_adult = "false";
-    final static String INCLUDE_VIDEO = "include_video";
-    final static String include_video = "false";
-    final static String PAGE = "page";
-    final static String page = "1";
-
-    public static List<Movie> fetchMovieData(URL url) {
+        public static List<Movie> fetchMovieData(URL url) {
 
         String jsonResponse = null;
         try {
@@ -50,28 +40,23 @@ public class Network {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<Movie>movies = extractFeatureFromJson(jsonResponse);
-            return movies;
+        List<Movie> movies = extractFeatureFromJson(jsonResponse);
+        return movies;
 
 
-}
-            //Building URL used to query
+    }
+    //Building URL used to query
 
     public static URL buildURl(String sort) {
         Uri builtUri = Uri.parse(MOVIE_DB_URL).buildUpon()
-              .appendQueryParameter(API_KEY, api_key)
-               .appendQueryParameter(LANGUAGE, language)
-               .appendQueryParameter(SORT_BY, sort)
-               .appendQueryParameter(INCLUDE_ADULT, include_adult)
-                .appendQueryParameter(INCLUDE_VIDEO, include_video)
-                .appendQueryParameter(PAGE, page)
-               .build();
-
-
+                .appendPath(sort)
+                .appendQueryParameter(API_KEY, api_key)
+                .build();
+        Log.i("NewUrl", String.valueOf(builtUri));
         URL url = null;
         try {
             url = new URL(builtUri.toString());
-                  } catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
@@ -79,13 +64,13 @@ public class Network {
         return url;
     }
 
-
     private static String getResponseFromHttpUrl(URL url) throws IOException {
-        HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();try {
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
             InputStream in = urlConnection.getInputStream();
 
             Scanner scanner = new Scanner(in);
-               scanner.useDelimiter("\\A");
+            scanner.useDelimiter("\\A");
 
             boolean hasInput = scanner.hasNext();
             if (hasInput) {
@@ -97,6 +82,7 @@ public class Network {
             urlConnection.disconnect();
         }
     }
+
     private static List<Movie> extractFeatureFromJson(String movieJson) {
         if (TextUtils.isEmpty((movieJson))) {
             return null;
@@ -129,7 +115,7 @@ public class Network {
 
 
                 Movie movie1 = new Movie(img_path, title, release_date, vote_average, plot);
-               movie.add(movie1);
+                movie.add(movie1);
 
             }
 

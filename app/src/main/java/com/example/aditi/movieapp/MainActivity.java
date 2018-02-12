@@ -1,19 +1,22 @@
 package com.example.aditi.movieapp;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import com.example.aditi.movieapp.Adapter.Movie;
@@ -25,11 +28,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mrecyclerView;
+    private RecyclerView mRecyclerView;
 
     private Recycler mRecyclerMovie;
 
     private ProgressBar mProgressBar;
+
+    private static final String POPULAR_KEY="popular";
+    public static final String TOP_RATED_KEY="top_rated";
 
 
     private final static String MENUSelected = "selected";
@@ -40,26 +46,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mrecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerView);
         mProgressBar = findViewById(R.id.progressBar);
 
 
         RecyclerView.LayoutManager mLayoutManager = new
                 GridLayoutManager(MainActivity.this, 2);
 
-        mrecyclerView.setLayoutManager(mLayoutManager);
-        mrecyclerView.setItemAnimator(new DefaultItemAnimator());
-        build("popularity.desc");
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        if (isOnline()){
+            build(POPULAR_KEY);
+        }else {
+            Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
+        }
+
 
         if (savedInstanceState != null) {
             selected = savedInstanceState.getInt(MENUSelected);
 
             if (selected == -1) {
-                build("popularity.desc");
+                build(POPULAR_KEY);
             } else if (selected == R.id.highest_Rated) {
-                build("vote_count.desc");
+                build(TOP_RATED_KEY);
             } else {
-                build("popularity.desc");
+                build(POPULAR_KEY);
             }
 
         }
@@ -96,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                        }
                    });
-            mrecyclerView.setAdapter(mRecyclerMovie);
+            mRecyclerView.setAdapter(mRecyclerMovie);
             mRecyclerMovie.notifyDataSetChanged();
 
 
@@ -123,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.highest_Rated:
-                build("vote_count.desc");
+                build(TOP_RATED_KEY);
                 selected = id;
 
                 break;
 
             case R.id.most_popular:
-                build("popularity.desc");
+                build(POPULAR_KEY);
                 selected = id;
                 break;
         }
@@ -142,4 +153,13 @@ public class MainActivity extends AppCompatActivity {
         new MovieDBQueryTask().execute(final_Url);
         return final_Url;
     }
+    // Function for checking Network connection
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
 }
