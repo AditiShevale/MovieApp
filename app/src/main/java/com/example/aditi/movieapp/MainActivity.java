@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String MENUSelected = "selected";
     private int selected = -1;
-    MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
