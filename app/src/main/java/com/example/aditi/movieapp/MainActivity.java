@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
            mRecyclerMovie = new Recycler(MainActivity.this,movies,
                    new Recycler.ListItemClickListener(){
                        @Override
+
                        public void onListItemClick(Movie movie) {
                            Intent intent = new Intent(MainActivity.this,
                                    Details.class);

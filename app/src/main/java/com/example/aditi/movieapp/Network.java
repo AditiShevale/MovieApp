@@ -30,7 +30,7 @@ public class Network {
 
     final static String API_KEY = "api_key";
 
-    final static String api_key = "****Paste your api key here******";
+    final static String api_key = "00bab64ed019eded1ab3d951af1bb2a0";
 
         public static List<Movie> fetchMovieData(URL url) {
 
