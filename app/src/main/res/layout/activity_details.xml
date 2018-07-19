@@ -60,42 +60,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="204dp"
-        android:layout_marginLeft="240dp"
+        android:layout_marginEnd="74dp"
 
+        android:layout_marginLeft="240dp"
+        android:layout_marginRight="74dp"
         android:layout_marginStart="240dp"
+        android:layout_marginTop="75dp"
         android:background="#FFA000"
         android:fontFamily="serif"
+
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-
         android:paddingTop="5dp"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/release"
         tools:text="10/10" />
 
     <TextView
         android:id="@+id/release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="332dp"
-        android:layout_marginLeft="232dp"
-        android:layout_marginStart="232dp"
+        android:layout_marginBottom="316dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginRight="77dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="73dp"
         android:background="#FFA000"
         android:fontFamily="serif"
+
         android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-
         android:paddingTop="5dp"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativelayout"
+        app:layout_constraintVertical_bias="1.0"
         tools:text="Date" />
 
     <RelativeLayout
