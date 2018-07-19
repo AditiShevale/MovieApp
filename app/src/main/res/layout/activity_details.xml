@@ -43,7 +43,7 @@
     <ImageView
         android:id="@+id/poster"
         android:layout_width="198dp"
-        android:layout_height="274dp"
+        android:layout_height="202dp"
         android:layout_marginBottom="164dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
@@ -53,16 +53,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativelayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="204dp"
-        android:layout_marginLeft="250dp"
+        android:layout_marginLeft="240dp"
 
-        android:layout_marginStart="250dp"
+        android:layout_marginStart="240dp"
         android:background="#FFA000"
         android:fontFamily="serif"
         android:paddingBottom="5dp"
@@ -81,9 +81,9 @@
         android:id="@+id/release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="372dp"
-        android:layout_marginLeft="228dp"
-        android:layout_marginStart="228dp"
+        android:layout_marginBottom="332dp"
+        android:layout_marginLeft="232dp"
+        android:layout_marginStart="232dp"
         android:background="#FFA000"
         android:fontFamily="serif"
         android:paddingBottom="5dp"
