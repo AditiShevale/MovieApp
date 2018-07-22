@@ -88,9 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="316dp"
         android:layout_marginEnd="77dp"
-        android:layout_marginLeft="240dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginRight="77dp"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="73dp"
         android:background="#FFA000"
         android:fontFamily="serif"
@@ -107,7 +107,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativelayout"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="Date" />
 
     <RelativeLayout
