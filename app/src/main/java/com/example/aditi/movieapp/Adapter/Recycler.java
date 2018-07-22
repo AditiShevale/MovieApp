@@ -48,8 +48,8 @@ final private ListItemClickListener mOnClickListener;
         Context context = holder.movieImg.getContext();
         Picasso.with(context).load("https://image.tmdb.org/t/p/w185/"+movie.
                 getImage()).into(holder.movieImg);
-        Log.i("xyz","https://image.tmdb.org/t/p/w185/" +movie.getImage());
-        holder.bind(mMovieList.get(position),mOnClickListener);
+        Log.i("xyz","https://image.tmdb.org/t/p/w185/" + movie.getImage());
+        holder.bind(mMovieList.get(position), mOnClickListener);
 
     }
 
