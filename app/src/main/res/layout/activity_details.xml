@@ -129,23 +129,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/plot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-smallcaps"
-                android:paddingBottom="5dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="2dp"
-                android:paddingTop="5dp"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                tools:layout_editor_absoluteX="53dp"
-                tools:layout_editor_absoluteY="0dp"
-                tools:text="Android Nanodegreee Project Stage-1" />
-
 
         </ScrollView>
+
+        <TextView
+            android:id="@+id/plot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="2dp"
+            android:paddingTop="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="0dp"
+            tools:text="Android Nanodegreee Project Stage-1" />
 
 
     </RelativeLayout>
