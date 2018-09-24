@@ -3,12 +3,19 @@ package com.example.aditi.movieapp.Adapter;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.aditi.movieapp.Model.Movies.MoviesResult;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by aditi on 27/1/18.
  */
 
 public class Movie implements Parcelable {
-    private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mBackImage;
+private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mBackImage;
 
 
     public Movie(String image) {

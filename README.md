@@ -9,10 +9,10 @@ This app is built with MVVM Design Pattern
 
 With the app, you can:
 * Explore the most popular and top rated movies.
-* Mark as favorite any movie for easy access in the future.
-* Watch movie trailers.
-* Read movie reviews.
-* Main movie information as well as cached images stored in a local database so you can browse it even offline.
+* Mark as favorite any movies for easy access in the future.
+* Watch movies trailers.
+* Read movies reviews.
+* Main movies information as well as cached images stored in a local database so you can browse it even offline.
 
 
 ## How to Work with the Source

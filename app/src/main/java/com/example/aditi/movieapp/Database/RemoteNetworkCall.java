@@ -6,7 +6,11 @@ import android.arch.lifecycle.MutableLiveData;
 import com.example.aditi.movieapp.Model.Movies.Movies;
 import com.example.aditi.movieapp.Model.Movies.MoviesResult;
 import com.example.aditi.movieapp.Model.Movies.Reviews.ReviewResult;
+import com.example.aditi.movieapp.Model.Movies.Reviews.Reviews;
 import com.example.aditi.movieapp.Model.Movies.Trailer.TrailerResult;
+import com.example.aditi.movieapp.Model.Movies.Trailer.Trailers;
+import com.example.aditi.movieapp.Service.ApiClient;
+import com.example.aditi.movieapp.Service.ApiInterface;
 
 import java.util.List;
 
@@ -38,10 +42,6 @@ public class RemoteNetworkCall {
 
 
                 data.postValue(results);
-
-                //
-
-
             }
 
             @Override
@@ -67,7 +67,8 @@ public class RemoteNetworkCall {
         Call<Reviews> call = apiService.getMovieReviews(id, ApiClient.api_key);
         call.enqueue(new Callback<Reviews>() {
             @Override
-            public void onResponse(Call<Reviews> call, final Response<Reviews> response) {
+            public void onResponse(Call<Reviews> call, final Response<Reviews>
+                    response) {
                 int statusCode = response.code();
                 List<ReviewResult> results = response.body().getResults();
 
@@ -108,20 +109,16 @@ public class RemoteNetworkCall {
 
                 dataTrailer.postValue(results);
 
-
             }
 
             @Override
             public void onFailure(Call<Trailers> call, Throwable t) {
-
             }
-
 
         });
 
 
     }
-
 
     public static LiveData<List<MoviesResult>> getIntData() {
         return data;

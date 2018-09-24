@@ -1,133 +1,179 @@
 package com.example.aditi.movieapp;
 
 
-import android.content.Context;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
+import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
-import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Adapter.RecyclerMovie;
-import com.example.aditi.movieapp.Network.NetworkUtils;
+import com.example.aditi.movieapp.Model.Movies.MoviesResult;
+import com.example.aditi.movieapp.ViewModel.MainViewModel;
+import com.facebook.stetho.Stetho;
 
-import java.net.URL;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
+
+    @BindView(R.id.recyclerView)
+    RecyclerView mrecyclerView;
+    @BindView(R.id.progress_bar)
+    ProgressBar mProgressBar;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.collapsing_main)
+    CollapsingToolbarLayout mCollapsingMain;
+    private int selected = 0;
+
+    public static final String EXTRA_ANIMAL_IMAGE_TRANSITION_NAME = "animal_image_transition_name";
 
     private RecyclerMovie mRecyclerMovie;
+    MainViewModel viewModel;
 
-    private ProgressBar mProgressBar;
+    // onSaveinstance varibale
 
-    private static final String POPULAR_KEY="popular";
-    public static final String TOP_RATED_KEY="top_rated";
+    private final static String MENU_SELECTED = "selected";
 
-
-    private final static String MENUSelected = "selected";
-    private int selected = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mProgressBar = findViewById(R.id.progressBar);
+        setContentView(R.layout.maintrial);
+        ButterKnife.bind(this);
+        Stetho.initializeWithDefaults(this);
+        setSupportActionBar(mToolbar);
+        mCollapsingMain.setTitle("bLOCKbUSTERmOVIES");
 
 
-        RecyclerView.LayoutManager mLayoutManager = new
-                GridLayoutManager(MainActivity.this, 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        if (isOnline()){
-            build(POPULAR_KEY);
-        }else {
-            Toast.makeText(this, "No Internet", Toast.LENGTH_SHORT).show();
+
+        mrecyclerView.setLayoutManager(mLayoutManager);
+        mrecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mrecyclerView.setNestedScrollingEnabled(false);
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
+        if (savedInstanceState == null) {
+            populateUI(selected);
+
+        } else {
+            selected = savedInstanceState.getInt(MENU_SELECTED);
+            populateUI(selected);
         }
 
 
-        if (savedInstanceState != null) {
-            selected = savedInstanceState.getInt(MENUSelected);
 
-            if (selected == -1) {
-                build(POPULAR_KEY);
-            } else if (selected == R.id.highest_Rated) {
-                build(TOP_RATED_KEY);
-            } else {
-                build(POPULAR_KEY);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
             }
 
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+                int id= (int) viewHolder.itemView.getTag();
+                viewModel.deleteData(id);
+
+            }
+        }).attachToRecyclerView(mrecyclerView);
+   }
+
+    private void populateUI(int i) {
+
+
+        viewModel.mLiveData().removeObservers(this);
+        // viewModel.mLiveDataFav().removeObservers(this);
+
+        switch (i) {
+            case 0:
+
+                viewModel.mLiveData().observe(this, new Observer<List<MoviesResult>>() {
+                    @Override
+                    public void onChanged(@Nullable List<MoviesResult> results) {
+                        setupRecyclerView(results);
+                    }
+                });
+
+                break;
+
+            case 1:
+
+                viewModel.mLiveDataFav().observe(this, new Observer<List<MoviesResult>>() {
+                    @Override
+                    public void onChanged(@Nullable List<MoviesResult> results) {
+                        setupRecyclerView(results);
+                    }
+                });
+
+
         }
+
+
     }
 
-    public class MovieDBQueryTask extends AsyncTask<URL, Void, List<Movie>>  {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressBar.setVisibility(View.VISIBLE);
-        }
+    private void setupRecyclerView(List<MoviesResult> results) {
 
-        @Override
-        protected List<Movie> doInBackground(URL... urls) {
+        if (results != null) {
 
-            List<Movie> result = NetworkUtils.fetchMovieData(urls[0]);
-            return result;
-        }
+            mRecyclerMovie = new RecyclerMovie(MainActivity.this, results, new RecyclerMovie.ListItemClickListener() {
+                @Override
+                public void onListItemClick(MoviesResult movie) {
 
-        @Override
-        protected void onPostExecute(List<Movie> movies) {
+                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                    intent.putExtra("data", movie);
+                    startActivity(intent);
 
 
-            mProgressBar.setVisibility(View.INVISIBLE);
-           mRecyclerMovie = new RecyclerMovie(MainActivity.this,movies,
-                   new RecyclerMovie.ListItemClickListener(){
-                       @Override
-
-                       public void onListItemClick(Movie movie) {
-                           Intent intent = new Intent(MainActivity.this,
-                                   Details.class);
-                           intent.putExtra("data",movie);
-                           startActivity(intent);
+                }
+            });
 
 
-                       }
-                   });
-            mRecyclerView.setAdapter(mRecyclerMovie);
+            mrecyclerView.setAdapter(mRecyclerMovie);
             mRecyclerMovie.notifyDataSetChanged();
-
-
+        } else {
+            Toast.makeText(this, "List Null", Toast.LENGTH_SHORT).show();
         }
+
+
     }
+
+    //onsaveInstanceState
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(MENUSelected, selected);
+        outState.putInt(MENU_SELECTED, selected);
         super.onSaveInstanceState(outState);
     }
 
 
+    // For menu settings
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -135,32 +181,32 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.highest_Rated:
-                build(TOP_RATED_KEY);
-                selected = id;
+
+                viewModel.getTopRated();
+                selected = 0;
+                populateUI(selected);
 
                 break;
 
             case R.id.most_popular:
-                build(POPULAR_KEY);
-                selected = id;
+
+                viewModel.getPopular();
+                selected = 0;
+                populateUI(selected);
+                break;
+
+            case R.id.fav:
+
+
+                viewModel.getFavData();
+                selected = 1;
+                populateUI(selected);
+
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private URL build(String sort) {
-        URL final_Url = NetworkUtils.buildURl(sort);
-        new MovieDBQueryTask().execute(final_Url);
-        return final_Url;
-    }
-    // Function for checking NetworkUtils connection
-
-    public boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
 
 }

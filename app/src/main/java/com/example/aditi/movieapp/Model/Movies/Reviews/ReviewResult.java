@@ -1,5 +1,8 @@
 package com.example.aditi.movieapp.Model.Movies.Reviews;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class ReviewResult {
     @SerializedName("author")
     @Expose

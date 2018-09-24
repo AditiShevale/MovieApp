@@ -9,11 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.aditi.movieapp.MainActivity;
+import com.example.aditi.movieapp.Model.Movies.MoviesResult;
+import com.example.aditi.movieapp.Picasso.RoundedTransformation;
 import com.example.aditi.movieapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by aditi on 23/1/18.
@@ -34,7 +39,8 @@ public class RecyclerMovie extends  RecyclerView.Adapter<RecyclerMovie.MyViewHol
     }
 
 
-    public RecyclerMovie(MainActivity mainActivity, List<MoviesResult> movieList, ListItemClickListener listener) {
+    public RecyclerMovie(MainActivity mainActivity, List<MoviesResult>
+            movieList, ListItemClickListener listener) {
         mMovieList = movieList;
         mOnClickListener = listener;
     }
@@ -54,7 +60,8 @@ public class RecyclerMovie extends  RecyclerView.Adapter<RecyclerMovie.MyViewHol
         MoviesResult movie = mMovieList.get(position);
         holder.itemView.setTag(movie.getId());
 
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).transform(new RoundedTransformation(14, 0)).into(holder.img_movie);
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" +
+                movie.getPosterPath()).transform(new RoundedTransformation(14, 0)).into(holder.img_movie);
         // holder.bind(mMovieList.get(position), mOnClickListener);
         //ViewCompat.setTransitionName(holder.img_movie, movie.getTitle());
 
