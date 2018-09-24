@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected List<Movie> doInBackground(URL... urls) {
 
-            List<Movie> result = Network.fetchMovieData(urls[0]);
+            List<Movie> result = NetworkUtils.fetchMovieData(urls[0]);
             return result;
         }
 
@@ -149,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private URL build(String sort) {
-        URL final_Url = Network.buildURl(sort);
+        URL final_Url = NetworkUtils.buildURl(sort);
         new MovieDBQueryTask().execute(final_Url);
         return final_Url;
     }
-    // Function for checking Network connection
+    // Function for checking NetworkUtils connection
 
     public boolean isOnline() {
         ConnectivityManager cm =

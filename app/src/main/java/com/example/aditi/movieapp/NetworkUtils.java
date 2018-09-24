@@ -25,14 +25,18 @@ import java.util.Scanner;
  * Created by aditi on 10/1/18.
  */
 
-public class Network {
+public class NetworkUtils {
+
     final static String MOVIE_DB_URL = "http://api.themoviedb.org/3/movie/";
 
     final static String API_KEY = "api_key";
 
     final static String api_key = "00bab64ed019eded1ab3d951af1bb2a0";
 
-        public static List<Movie> fetchMovieData(URL url) {
+    //Fetching the json response
+
+    public static List<Movie> fetchMovieData(URL url) {
+        Log.i("xyz", String.valueOf(url));
 
         String jsonResponse = null;
         try {
@@ -40,17 +44,19 @@ public class Network {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<Movie> movies = extractFeatureFromJson(jsonResponse);
+
+        List<Movie> movies = extractFeaturesFromJson(jsonResponse);
         return movies;
 
-
     }
-    //Building URL used to query
+
+
+    //Building URL used to query MOVIEDB
 
     public static URL buildURl(String sort) {
         Uri builtUri = Uri.parse(MOVIE_DB_URL).buildUpon()
                 .appendPath(sort)
-                .appendQueryParameter(API_KEY, api_key)
+                .appendQueryParameter(API_KEY,api_key)
                 .build();
         Log.i("NewUrl", String.valueOf(builtUri));
         URL url = null;
@@ -64,7 +70,9 @@ public class Network {
         return url;
     }
 
-    private static String getResponseFromHttpUrl(URL url) throws IOException {
+    //Method for getting response from Network
+
+    public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
@@ -83,16 +91,19 @@ public class Network {
         }
     }
 
-    private static List<Movie> extractFeatureFromJson(String movieJson) {
+    //Method for json parsing
+
+    private static List<Movie> extractFeaturesFromJson(String movieJson) {
+
         if (TextUtils.isEmpty((movieJson))) {
             return null;
         }
 
-
+        //creating empty array list to add the movies
         List<Movie> movie = new ArrayList<>();
 
-
         try {
+
 
             JSONObject baseJsonResponse = new JSONObject(movieJson);
 
@@ -113,8 +124,11 @@ public class Network {
 
                 String title = currentMovie.getString("title");
 
+                String backImage=currentMovie.getString("backdrop_path");
 
-                Movie movie1 = new Movie(img_path, title, release_date, vote_average, plot);
+
+                Movie movie1 = new Movie(img_path, title, release_date, vote_average, plot,backImage);
+
                 movie.add(movie1);
 
             }
@@ -126,4 +140,6 @@ public class Network {
 
         return movie;
     }
+
+
 }
