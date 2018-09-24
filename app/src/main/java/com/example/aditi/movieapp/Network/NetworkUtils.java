@@ -1,4 +1,4 @@
-package com.example.aditi.movieapp;
+package com.example.aditi.movieapp.Network;
 
 
 import android.net.Uri;

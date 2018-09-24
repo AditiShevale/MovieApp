@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Adapter.RecyclerMovie;
+import com.example.aditi.movieapp.Network.NetworkUtils;
 
 import java.net.URL;
 import java.util.List;
