@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,7 +20,7 @@ import android.widget.Toast;
 
 
 import com.example.aditi.movieapp.Adapter.Movie;
-import com.example.aditi.movieapp.Adapter.Recycler;
+import com.example.aditi.movieapp.Adapter.RecyclerMovie;
 
 import java.net.URL;
 import java.util.List;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
-    private Recycler mRecyclerMovie;
+    private RecyclerMovie mRecyclerMovie;
 
     private ProgressBar mProgressBar;
 
@@ -95,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
 
             mProgressBar.setVisibility(View.INVISIBLE);
-           mRecyclerMovie = new Recycler(MainActivity.this,movies,
-                   new Recycler.ListItemClickListener(){
+           mRecyclerMovie = new RecyclerMovie(MainActivity.this,movies,
+                   new RecyclerMovie.ListItemClickListener(){
                        @Override
 
                        public void onListItemClick(Movie movie) {
