@@ -31,11 +31,9 @@ public class Repository {
         mMovieDao = db.movieDao();
 
         RemoteNetworkCall.fetchData("popular");
-
-
     }
 
-    // constructor for review and trailer
+    // Constructor for review and trailer
 
     public Repository(int movie1ID, Context context) {
         AppDatabase db = AppDatabase.getDatabase(context);
@@ -81,9 +79,7 @@ public class Repository {
 
     }
 
-
-    //----------------------------------------------------------------------------------
-
+    //----------------------------------------------
 
     public void insert(MoviesResult result) {
 
@@ -126,7 +122,7 @@ public class Repository {
         }
     }
 
-    //Methods for Detail Activity
+    // Detail Activity Methods
 
 
     public LiveData<List<ReviewResult>> mReviewLiveData() {

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerMovie mRecyclerMovie;
     MainViewModel viewModel;
 
-    // onSaveinstance varibale
+    // onSave instance variable
 
     private final static String MENU_SELECTED = "selected";
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Stetho.initializeWithDefaults(this);
         setSupportActionBar(mToolbar);
-        mCollapsingMain.setTitle("bLOCKbUSTERmOVIES");
+        mCollapsingMain.setTitle("Movie App2");
 
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
@@ -100,9 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void populateUI(int i) {
 
-
         viewModel.mLiveData().removeObservers(this);
-        // viewModel.mLiveDataFav().removeObservers(this);
 
         switch (i) {
             case 0:
@@ -207,6 +205,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

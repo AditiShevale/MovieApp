@@ -40,6 +40,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity{
+
     @BindView(R.id.release)
     TextView txt_Release;
     @BindView(R.id.title)
@@ -61,8 +62,7 @@ public class DetailActivity extends AppCompatActivity{
     CollapsingToolbarLayout mCollapsingtoolbar;
     @BindView(R.id.fab_detail)
     FloatingActionButton mFabDetail;
-    private int id;
-    // for Trailer
+     // for Trailer
     private RecyclerView mRecyclerView;
     private MovieTrailerAdapter mMovieTrailerAdapter;
 
@@ -91,14 +91,14 @@ public class DetailActivity extends AppCompatActivity{
 
 
 
-        // for trailer adapter----------------------------------------------------------------------
+        // for trailer adapter----------
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        //for review adapter------------------------------------------------------------------------
+        //for review adapter------------
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
         manager.setAutoMeasureEnabled(true);
         mRecyclerViewReview.setLayoutManager(manager);
@@ -136,14 +136,13 @@ public class DetailActivity extends AppCompatActivity{
 
         txt_Title.setText(movie.getTitle());
         txt_Plot.setText(movie.getOverview());
-        /*txt_Rating.setText(movie.getVoteAverage() + "/10");*/
         txt_Release.setText(movie.getReleaseDate());
 
 
         mDetailViewModel.getAllReviews().observe(this, new Observer<List<ReviewResult>>() {
             @Override
             public void onChanged(@Nullable List<ReviewResult> reviewResults) {
-                Log.d("reviewsxxx", String.valueOf(reviewResults));
+                Log.d("reviews", String.valueOf(reviewResults));
                 mMovieReviewAdapter = new MovieReviewAdapter(reviewResults);
                 mRecyclerViewReview.setAdapter(mMovieReviewAdapter);
 
@@ -153,7 +152,7 @@ public class DetailActivity extends AppCompatActivity{
         mDetailViewModel.getAllTrailers().observe(this, new Observer<List<TrailerResult>>() {
             @Override
             public void onChanged(@Nullable List<TrailerResult> trailerResults) {
-                Log.d("trailerxxx", String.valueOf(trailerResults));
+                Log.d("trailer", String.valueOf(trailerResults));
                 mMovieTrailerAdapter = new MovieTrailerAdapter(trailerResults, new MovieTrailerAdapter.ListItemClickListener() {
                     @Override
                     public void onListItemClick(TrailerResult movieTrailer) {
