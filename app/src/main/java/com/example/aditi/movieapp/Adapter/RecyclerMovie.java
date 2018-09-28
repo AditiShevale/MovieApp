@@ -62,11 +62,7 @@ public class RecyclerMovie extends  RecyclerView.Adapter<RecyclerMovie.MyViewHol
 
         Picasso.get().load("https://image.tmdb.org/t/p/w500" +
                 movie.getPosterPath()).transform(new RoundedTransformation(14, 0)).into(holder.img_movie);
-        // holder.bind(mMovieList.get(position), mOnClickListener);
-        //ViewCompat.setTransitionName(holder.img_movie, movie.getTitle());
-
-
-    }
+          }
 
     @Override
     public int getItemCount() {
@@ -103,7 +99,6 @@ public class RecyclerMovie extends  RecyclerView.Adapter<RecyclerMovie.MyViewHol
             int adapterPosition = getAdapterPosition();
             MoviesResult result = mMovieList.get(adapterPosition);
             mOnClickListener.onListItemClick(result);
-
 
         }
     }

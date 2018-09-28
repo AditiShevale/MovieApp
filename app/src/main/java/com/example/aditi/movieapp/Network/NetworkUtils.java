@@ -51,7 +51,7 @@ public class NetworkUtils {
     }
 
 
-    //Building URL used to query MOVIEDB
+    //Building URL used to query MOVIE DataBase
 
     public static URL buildURl(String sort) {
         Uri builtUri = Uri.parse(MOVIE_DB_URL).buildUpon()

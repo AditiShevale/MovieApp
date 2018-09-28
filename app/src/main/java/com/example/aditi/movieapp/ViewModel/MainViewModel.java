@@ -21,7 +21,7 @@ public class MainViewModel extends AndroidViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        Log.d("xxx","data cleared");
+        Log.d("xyz","Data cleared");
     }
 
     public MainViewModel(@NonNull Application application) {

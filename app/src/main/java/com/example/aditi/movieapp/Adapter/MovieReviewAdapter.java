@@ -53,7 +53,7 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
         public MyViewHolder(View itemView) {
             super(itemView);
             txt_author = itemView.findViewById(R.id.txtAuthor);
-            // For underlining the textview
+            // For underlining the textView
             txt_author.setPaintFlags(txt_author.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
             txt_review = itemView.findViewById(R.id.txtReview);
