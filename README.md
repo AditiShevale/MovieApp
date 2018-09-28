@@ -1,4 +1,4 @@
-# MovieApp
+# MovieApp-2
 This app is built with MVVM Design Pattern
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
