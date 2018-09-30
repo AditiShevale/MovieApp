@@ -15,6 +15,7 @@ import java.util.List;
  */
 
 public class Movie implements Parcelable {
+
 private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mBackImage;
 
 
