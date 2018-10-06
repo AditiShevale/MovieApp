@@ -57,7 +57,9 @@
                 android:layout_height="match_parent"
 
 
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -233,5 +235,7 @@
         app:backgroundTint="#ffab91"
 
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|end"
+        tools:layout_editor_absoluteX="313dp"
+        tools:layout_editor_absoluteY="221dp" />
 </android.support.constraint.ConstraintLayout>

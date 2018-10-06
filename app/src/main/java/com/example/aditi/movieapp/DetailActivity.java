@@ -39,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DetailActivity extends AppCompatActivity{
+public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.release)
     TextView txt_Release;
@@ -62,6 +62,7 @@ public class DetailActivity extends AppCompatActivity{
     CollapsingToolbarLayout mCollapsingtoolbar;
     @BindView(R.id.fab_detail)
     FloatingActionButton mFabDetail;
+
      // for Trailer
     private RecyclerView mRecyclerView;
     private MovieTrailerAdapter mMovieTrailerAdapter;
@@ -79,6 +80,7 @@ public class DetailActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detailfinal);
         ButterKnife.bind(this);
@@ -162,9 +164,6 @@ public class DetailActivity extends AppCompatActivity{
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
                         intent.setData(Uri.parse("https://www.youtube.com/watch?v=" + movieTrailer.getKey()));
                         startActivity(intent);
-
-
-
                     }
                 });
                 mRecyclerView.setAdapter(mMovieTrailerAdapter);
